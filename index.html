@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Consumo de Combustível</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff4081, #ff5722); /* Gradiente rosa e vermelho */
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #ffffff; /* Branco */
+            color: #ff5722; /* Vermelho */
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: #fff; /* Branco */
+            color: #333; /* Cinza escuro */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .container h2 {
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            color: #ff5722; /* Vermelho */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #666; /* Cinza médio */
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ff5722; /* Vermelho */
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus {
+            border-color: #ff4081; /* Rosa */
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #ff5722; /* Vermelho */
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #ff4081; /* Rosa */
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #4caf50; /* Verde */
+        }
+
+        footer {
+            background: #ffffff; /* Branco */
+            color: #333; /* Cinza escuro */
+            padding: 15px;
+            text-align: center;
+            font-size: 0.9em;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Calculadora de Consumo de Combustível</h1>
+    </header>
+    
+    <main>
+        <div class="container">
+            <h2>Calcule o Consumo do Seu Carro</h2>
+            <form id="calcForm">
+                <div class="form-group">
+                    <label for="distance">Distância Percorrida (km):</label>
+                    <input type="number" id="distance" name="distance" placeholder="Digite a distância" required>
+                </div>
+                <div class="form-group">
+                    <label for="fuel">Combustível Consumido (litros):</label>
+                    <input type="number" id="fuel" name="fuel" placeholder="Digite o combustível" required>
+                </div>
+                <button type="submit">Calcular</button>
+            </form>
+            <div id="result" class="result"></div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Calculadora de Consumo. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.getElementById('calcForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Obtendo os valores dos campos
+            const distance = parseFloat(document.getElementById('distance').value);
+            const fuel = parseFloat(document.getElementById('fuel').value);
+
+            // Verificando se os valores são válidos
+            if (isNaN(distance) || isNaN(fuel) || distance <= 0 || fuel <= 0) {
+                alert('Por favor, insira valores válidos.');
+                return;
+            }
+
+            // Calculando o consumo
+            const consumption = distance / fuel;
+
+            // Exibindo o resultado
+            document.getElementById('result').innerText = `Consumo: ${consumption.toFixed(2)} km/l`;
+        });
+    </script>
+</body>
+</html>
